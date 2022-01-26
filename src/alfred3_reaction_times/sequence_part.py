@@ -2,6 +2,7 @@ import alfred3 as al
 from alfred3.element.core import Element
 
 from ._env import jinja_env
+from .keycodes import keycodes
 
 
 class SequencePart(Element):
@@ -42,20 +43,22 @@ class SequencePart(Element):
 
 class Reaction(Element):
 
-    keycodes = {
-        "n": 78,
-        "y": 89,
-    }
+    base_template = jinja_env.get_template("EmptyBaseElement.html.j2")
+    element_template = jinja_env.get_template("Reaction.html.j2")
 
     def __init__(
             self,
-            key,
+            key: str = "any",
             **kwargs
     ):
         super().__init__(**kwargs)
-        if key not in self.keycodes.keys():
+        # Python style?
+        if key in keycodes.keys():
+            self.key = keycodes[key]
+        elif key in keycodes.values():
+            self.key = key
+        else:
             raise KeyError("Unknown key " + key)
-        self.key = self.keycodes[key]
 
     @property
     def template_data(self):
@@ -99,6 +102,21 @@ class Stimulus(SequencePart):
     ):
         super().__init__(element=element, duration=timeout, **kwargs)
         self.reactions = reactions
+
+    def added_to_page(self, page):
+        super().added_to_page(page)
+
+        for reaction in self.reactions:
+            if reaction is None:
+                continue
+            reaction.display_standalone = False
+            page += reaction
+
+    @property
+    def template_data(self):
+        d = super().template_data
+        d["element_html"] += "".join([r.web_widget for r in self.reactions])
+        return d
 
 
 class Feedback(SequencePart):

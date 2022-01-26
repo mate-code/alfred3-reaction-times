@@ -1,25 +1,8 @@
 const eventNamespaces = {
-    sequencePart: "art.sequencePart",
+    reactionTimes: "art.reactionTimes",
     trial: "art.trial",
-    reactionTimes: "art.reactionTimes"
-}
-
-const events = {
-    sequencePart: {
-        namespace: "art.sequencePart",
-        start: "art.sequencePart.start",
-        finish: "art.sequencePart.finish",
-    },
-    trial: {
-        namespace: "art.trial",
-        start: "art.trial.start",
-        finish: "art.trial.finish",
-    },
-    reactionTimes: {
-        namespace: "art.reactionTimes",
-        start: "art.reactionTimes.start",
-        finish: "art.reactionTimes.finish",
-    }
+    sequencePart: "art.sequencePart",
+    reaction: "art.reaction",
 }
 
 const types = {
@@ -29,27 +12,38 @@ const types = {
     feedback: "feedback",
 }
 
-class AlfredSequenceExecutable {
+class AlfredElement {
+
+    constructor(element, eventNamespace) {
+        this.element = $(element)
+        this.id = this.element.attr("id")
+
+        this.eventNamespace = eventNamespace
+        if (!this.eventNamespace) this.eventNamespace = ""
+        else if (this.eventNamespace.slice(-1) !== ".") this.eventNamespace += "."
+    }
+
+    on(event, callback) {
+        this.element.on(this.eventNamespace + event, callback)
+    }
+
+    trigger(event, context) {
+        context = typeof context === "undefined" ? this : context
+        this.element.trigger(this.eventNamespace + event, context)
+    }
+
+}
+
+class AlfredExecutableSequenceElement extends AlfredElement {
 
     events = {
         start: "start",
         finish: "finish"
     }
 
-    constructor(element, eventNamespace = "") {
-        this.element = $(element)
-
-        this.id = this.element.parent().parent().attr("id").slice(0, -("-container".length));
-
-        this.eventNamespace = eventNamespace;
-        if (this.eventNamespace && this.eventNamespace.slice(-1) !== ".") {
-            this.eventNamespace += "."
-        }
-    }
-
-    async promiseExecution() {
+    async execute() {
         this.start()
-        await this.execute().then(() => {
+        await this.promise().then(() => {
             this.finish()
         })
     }
@@ -61,25 +55,17 @@ class AlfredSequenceExecutable {
     /**
      * @returns {Promise<unknown>}
      */
-    execute() {
+    promise() {
+        return new Promise((res) => res())
     }
 
     finish() {
         this.trigger(this.events.finish)
     }
 
-    on(event, callback) {
-        this.element.on(this.eventNamespace + event, callback);
-    }
-
-    trigger(event, context) {
-        context = typeof context === "undefined" ? this : context;
-        this.element.trigger(this.eventNamespace + event, context);
-    }
-
 }
 
-class ReactionTimes extends AlfredSequenceExecutable {
+class ReactionTimes extends AlfredExecutableSequenceElement {
 
     pos
 
@@ -90,21 +76,17 @@ class ReactionTimes extends AlfredSequenceExecutable {
         this.element.find(".trial").each((i, trialElement) => {
             this.trials.push(new Trial(trialElement, this))
         });
-
-        this.promiseExecution().then(() => {
-            console.log("done")
-        })
     }
 
-    async execute() {
+    async promise() {
         for (this.pos = 0; this.pos < this.trials.length; this.pos++) {
-            await this.trials[this.pos].promiseExecution()
+            await this.trials[this.pos].execute()
         }
     }
 
 }
 
-class Trial extends AlfredSequenceExecutable {
+class Trial extends AlfredExecutableSequenceElement {
 
     pos
 
@@ -123,9 +105,9 @@ class Trial extends AlfredSequenceExecutable {
         this.element.show()
     }
 
-    async execute() {
+    async promise() {
         for (this.pos = 0; this.pos < this.sequence.length; this.pos++) {
-            await this.sequence[this.pos].promiseExecution()
+            await this.sequence[this.pos].execute()
         }
     }
 
@@ -136,18 +118,7 @@ class Trial extends AlfredSequenceExecutable {
 
 }
 
-const timer = ms => new Promise(res => setTimeout(res, ms))
-
-const awaitClick = () => new Promise((res) => {
-    let onClick = () => {
-        console.log("clicked")
-        $(document).off("click", onClick)
-        res()
-    }
-    $(document).on("click", onClick)
-})
-
-class SequencePart extends AlfredSequenceExecutable {
+class SequencePart extends AlfredExecutableSequenceElement {
 
     constructor(element, trial) {
         super(element, eventNamespaces.sequencePart)
@@ -155,6 +126,11 @@ class SequencePart extends AlfredSequenceExecutable {
 
         this.duration = parseFloat(this.element.data("duration")) * 1000
         this.type = this.element.data("type")
+
+        this.reactions = []
+        this.element.find(".reaction").each((i, reactionElement) => {
+            this.reactions.push(new Reaction(reactionElement, this))
+        });
     }
 
     start() {
@@ -162,10 +138,17 @@ class SequencePart extends AlfredSequenceExecutable {
         this.element.show()
     }
 
-    execute() {
-        return this.duration !== 0
-            ? timer(this.duration)
-            : awaitClick();
+    promise() {
+        let promises = []
+
+        if(this.duration !== 0) {
+            promises.push(this.timer(this.duration))
+        }
+        this.reactions.forEach(reaction => {
+            promises.push(reaction.promise())
+        })
+
+        return  Promise.any(promises)
     }
 
     finish() {
@@ -173,16 +156,76 @@ class SequencePart extends AlfredSequenceExecutable {
         this.element.hide();
     }
 
+    timer(ms) {
+        return new Promise(res => setTimeout(res, ms))
+    }
+
 }
 
-$(document).ready(function () {
+class Reaction extends AlfredElement {
 
-    let reactionElements = $(".reactions");
+    events = {
+        triggered: "triggered",
+    }
+
+    constructor(element, sequencePart) {
+        super(element, eventNamespaces.reaction);
+        this.sequencePart = sequencePart
+
+        this.key = parseInt(this.element.data("key"))
+    }
+
+    promise() {
+        return new Promise(res => {
+            let onKeydown = (e) => {
+                if(this.key && e.which !== this.key) {
+                    return null
+                }
+                this.trigger(this.events.triggered)
+                res()
+            }
+            $(document).on("keydown", onKeydown)
+
+            this.sequencePart.on(
+                this.sequencePart.events.finish,
+                () => $(document).off("keydown", onKeydown)
+            )
+        })
+    }
+
+}
+
+
+function bindEventDebugDisplay() {
+    let events = {
+        reactionTimes: {
+            namespace: "art.reactionTimes",
+            start: "art.reactionTimes.start",
+            finish: "art.reactionTimes.finish",
+        },
+        trial: {
+            namespace: "art.trial",
+            start: "art.trial.start",
+            finish: "art.trial.finish",
+        },
+        sequencePart: {
+            namespace: "art.sequencePart",
+            start: "art.sequencePart.start",
+            finish: "art.sequencePart.finish",
+        },
+        reaction: {
+            namespace: "art.reaction",
+            triggered: "art.reaction.triggered",
+        }
+    }
 
     let includeEvents = [
         events.sequencePart.start,
         events.sequencePart.finish,
-    ];
+        events.reactionTimes.finish,
+    ]
+
+    let reactionElements = $(".reaction-times");
     $.each(events, (i, elementEvents) => {
         $.each(elementEvents, (i, eventName) => {
             if (includeEvents.length !== 0 && !includeEvents.includes(eventName)) {
@@ -193,9 +236,14 @@ $(document).ready(function () {
             })
         });
     });
+}
 
-    reactionElements.each((i, element) => {
-        new ReactionTimes(element);
+$(document).ready(function () {
+
+    bindEventDebugDisplay()
+
+    $(".reaction-times").each((i, element) => {
+        new ReactionTimes(element).execute();
     });
 
 });

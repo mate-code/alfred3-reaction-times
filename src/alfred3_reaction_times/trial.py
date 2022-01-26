@@ -34,7 +34,7 @@ class Trial(Element):
     def template_data(self):
         d = super().template_data
         # {s.name: s.web_widget for s in self.sequence} # dict comprehension
-        d["sequence_html"] = "".join([s.web_widget for s in self.sequence]) # list comprehension
+        d["sequence_html"] = "".join([s.web_widget for s in self.sequence])  # list comprehension
         return d
 
 

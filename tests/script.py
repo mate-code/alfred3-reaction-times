@@ -15,7 +15,8 @@ class Demo(al.Page):
         self += art.ReactionTimes(
             art.Trial(
                 art.Stimulus(
-                    al.Text("To start, press any key"),
+                    al.Text("To start, please press any key"),
+                    art.Reaction(),
                     name="start"
                 ),
             ),
@@ -25,7 +26,9 @@ class Demo(al.Page):
                     duration=2
                 ),
                 art.Stimulus(
-                    al.Text("Hello Stimulus 1")
+                    al.Text("Hello Stimulus 1"),
+                    art.Reaction("y"),
+                    art.Reaction("n"),
                 ),
                 art.Pause(2.5),
             ),
@@ -35,7 +38,9 @@ class Demo(al.Page):
                     duration=2
                 ),
                 art.Stimulus(
-                    al.Text("Hello Stimulus 2")
+                    al.Text("Hello Stimulus 2"),
+                    art.Reaction("y"),
+                    art.Reaction("n"),
                 ),
                 art.Pause(2.5),
             ),
@@ -45,7 +50,9 @@ class Demo(al.Page):
                     duration=2
                 ),
                 art.Stimulus(
-                    al.Text("Hello Stimulus 3")
+                    al.Text("Hello Stimulus 3"),
+                    art.Reaction("y"),
+                    art.Reaction("n"),
                 ),
                 art.Pause(2.5),
             ),
