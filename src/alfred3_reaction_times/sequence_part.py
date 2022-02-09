@@ -9,6 +9,17 @@ from .hidden_input import HiddenInput
 
 
 class SequencePart(Element):
+    """
+    SequencePart baseclass, providing basic functionality for all sequence parts
+
+    Args:
+        element (Element): Alfred3 element you want to display when this part
+            is shown during the execution of the trial
+        duration (float): Duration of display in seconds. For Stimulus parts, this
+            duration will be the maximum display time before the stimulus presentation
+            is considered to be a timeout. Leave it blank or 0 to disable this behavior.
+
+    """
     element_template = jinja_env.get_template("SequencePart.html.j2")
 
     def __init__(
@@ -45,7 +56,14 @@ class SequencePart(Element):
 
 
 class Reaction(Element):
+    """
+    Used for adding a possible keypress as a reaction to a stimulus part.
 
+    Args:
+        key (str): The key the user can press to trigger a reaction. See
+            art.keycodes for possible values
+
+    """
     base_template = jinja_env.get_template("EmptyBaseElement.html.j2")
     element_template = jinja_env.get_template("Reaction.html.j2")
 
@@ -74,6 +92,13 @@ class Reaction(Element):
 
 
 class Pause(SequencePart):
+    """
+    Blank part to add a pause to the trials execution
+
+    Args:
+        duration (float): Duration of the pause in seconds
+
+    """
     type = "pause"
 
     def __init__(
@@ -85,6 +110,14 @@ class Pause(SequencePart):
 
 
 class Fixation(SequencePart):
+    """
+    Fixation to show right before a stimulus
+
+    Args:
+        element (Element): Alfred3 element you want to display as a fixation
+        duration (float): Duration of the fixation in seconds
+
+    """
     type = "fixation"
 
     def __init__(
@@ -97,6 +130,15 @@ class Fixation(SequencePart):
 
 
 class Stimulus(SequencePart):
+    """
+    Stimulus to show to the user
+
+    Args:
+        element (Element): Alfred3 element you want to display as a stimulus
+        *reactions (Reaction): Possible reactions the user can show to trigger
+            reaction time measurement and continue the execution
+
+    """
     type = "stimulus"
     element_template = jinja_env.get_template("Stimulus.html.j2")
 
@@ -141,6 +183,14 @@ class Stimulus(SequencePart):
 
 
 class Feedback(SequencePart):
+    """
+    Feedback to show after a reaction has been measured
+
+    Args:
+        element (Element): Alfred3 element you want to display as a feedback
+        duration (float): Duration of the feedback in seconds
+
+    """
     type = "feedback"
 
     def __init__(

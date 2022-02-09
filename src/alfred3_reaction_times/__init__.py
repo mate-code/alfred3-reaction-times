@@ -10,3 +10,5 @@ from .sequence_part import Stimulus
 from .sequence_part import Feedback
 
 from .hidden_input import HiddenInput
+
+from .keycodes import keycodes

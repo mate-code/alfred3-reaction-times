@@ -1,7 +1,5 @@
 import alfred3 as al
-
 import alfred3_reaction_times as art
-
 exp = al.Experiment()
 
 
@@ -9,8 +7,6 @@ exp = al.Experiment()
 class Demo(al.Page):
 
     def on_exp_access(self):
-        self += al.Text("Reaction Times Test")
-
         reactions = art.ReactionTimes()
         stimuli = ("A", "B", "C", "D", "E", "F", "G")
 
@@ -25,8 +21,8 @@ class Demo(al.Page):
             )
             trial += art.Stimulus(
                 al.Text(stimulus),
-                art.Reaction("y", name="reaction_" + stimulus + "_yes"),
-                art.Reaction("n", name="reaction_" + stimulus + "_no"),
+                art.Reaction("y", name=f"reaction_{stimulus}_yes"),
+                art.Reaction("n", name=f"reaction_{stimulus}_no"),
                 name="stimulus_" + stimulus,
                 duration=3
             )
@@ -34,21 +30,19 @@ class Demo(al.Page):
                 element=al.Text("Yes!"),
                 duration=2,
                 showif={
-                    "stimulus_" + stimulus + "_reaction": "reaction_" + stimulus + "_yes"
+                    f"stimulus_{stimulus}_reaction": f"reaction_{stimulus}_yes"
                 }
             )
             trial += art.Feedback(
                 element=al.Text("No!"),
                 duration=2,
                 showif={
-                    "stimulus_" + stimulus + "_reaction": "reaction_" + stimulus + "_no"
+                    f"stimulus_{stimulus}_reaction": f"reaction_{stimulus}_no"
                 }
             )
             reactions += trial
 
         self += reactions
-
-        self += al.Text("End")
 
 
 @exp.member

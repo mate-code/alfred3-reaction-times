@@ -1,3 +1,7 @@
+/**
+ * Event namespaces for reaction time alfred3 elements
+ * @type {{reaction: string, sequencePart: string, reactionTimes: string, trial: string}}
+ */
 const eventNamespaces = {
     reactionTimes: "art.reactionTimes",
     trial: "art.trial",
@@ -5,6 +9,10 @@ const eventNamespaces = {
     reaction: "art.reaction",
 }
 
+/**
+ * Available types of SequencePart objects
+ * @type {{feedback: string, stimulus: string, fixation: string, pause: string}}
+ */
 const types = {
     pause: "pause",
     fixation: "fixation",
@@ -12,13 +20,25 @@ const types = {
     feedback: "feedback",
 }
 
+/**
+ * Available suffixes for stimulus input names
+ * @type {{reaction: string, time: string}}
+ */
 const inputs = {
     reaction: "reaction",
     time: "time"
 }
 
+/**
+ * Object representing an alfred3 elements html.
+ * Implements on() and trigger() methods as shortcuts for the corresponding jQuery methods
+ */
 class AlfredElement {
 
+    /**
+     * @param {jQuery} element jQuery representation of the alfred3 element
+     * @param {string} eventNamespace namespace key as noted in const eventNamespaces
+     */
     constructor(element, eventNamespace) {
         this.element = $(element)
         this.id = this.element.attr("id")
@@ -28,10 +48,18 @@ class AlfredElement {
         else if (this.eventNamespace.slice(-1) !== ".") this.eventNamespace += "."
     }
 
+    /**
+     * @param {string} event event name (will be prefixed by namespace if set)
+     * @param {function} callback function to call on event trigger
+     */
     on(event, callback) {
         this.element.on(this.eventNamespace + event, callback)
     }
 
+    /**
+     * @param {string} event event name (will be prefixed by namespace if set)
+     * @param {object=} context contextual object to pass to triggered function
+     */
     trigger(event, context) {
         context = typeof context === "undefined" ? this : context
         this.element.trigger(this.eventNamespace + event, context)
@@ -39,13 +67,24 @@ class AlfredElement {
 
 }
 
+/**
+ * Alfred3 element that can be executed in a sequence
+ */
 class AlfredExecutableSequenceElement extends AlfredElement {
 
+    /**
+     * Events triggered during execution
+     * @type {{start: string, finish: string}}
+     */
     events = {
         start: "start",
         finish: "finish"
     }
 
+    /**
+     * Triggers events and executes the promise of the element
+     * @returns {Promise<void>}
+     */
     async execute() {
         this.start()
         await this.promise().then(() => {
@@ -53,27 +92,45 @@ class AlfredExecutableSequenceElement extends AlfredElement {
         })
     }
 
+    /**
+     * Triggers the start event.
+     * Can be extended to add behaviour to the element.
+     */
     start() {
         this.trigger(this.events.start)
     }
 
     /**
+     * Must be extended with a returned promise that executes the element
      * @returns {Promise<unknown>}
      */
     promise() {
         return new Promise((res) => res())
     }
 
+    /**
+     * Triggers the finish event.
+     * Can be extended to add behaviour to the element.
+     */
     finish() {
         this.trigger(this.events.finish)
     }
 
 }
 
+/**
+ * Handles the execution of trials
+ */
 class ReactionTimes extends AlfredExecutableSequenceElement {
 
+    /**
+     * Current position in the execution of trials
+     */
     pos
 
+    /**
+     * @param {jQuery} element representation of ReactionTimes element
+     */
     constructor(element) {
         super(element, eventNamespaces.reactionTimes)
 
@@ -83,6 +140,10 @@ class ReactionTimes extends AlfredExecutableSequenceElement {
         });
     }
 
+    /**
+     * Iterate through promises of trials
+     * @returns {Promise<void>}
+     */
     async promise() {
         for (this.pos = 0; this.pos < this.trials.length; this.pos++) {
             await this.trials[this.pos].execute()
@@ -91,10 +152,20 @@ class ReactionTimes extends AlfredExecutableSequenceElement {
 
 }
 
+/**
+ * Handles the execution of sequence parts
+ */
 class Trial extends AlfredExecutableSequenceElement {
 
+    /**
+     * Current position in the execution of sequence parts
+     */
     pos
 
+    /**
+     * @param {jQuery} element representation of Trial element
+     * @param {ReactionTimes} reactionTimes parent ReactionTimes object that handles this trial
+     */
     constructor(element, reactionTimes) {
         super(element, eventNamespaces.trial)
         this.reactionTimes = reactionTimes
@@ -105,17 +176,27 @@ class Trial extends AlfredExecutableSequenceElement {
         });
     }
 
+    /**
+     * Extension of start event
+     */
     start() {
         super.start();
         this.element.show()
     }
 
+    /**
+     * Iterate through sequence parts of trials
+     * @returns {Promise<void>}
+     */
     async promise() {
         for (this.pos = 0; this.pos < this.sequence.length; this.pos++) {
             await this.sequence[this.pos].execute()
         }
     }
 
+    /**
+     * Extension of finish event
+     */
     finish() {
         super.finish();
         this.element.hide();
@@ -123,8 +204,15 @@ class Trial extends AlfredExecutableSequenceElement {
 
 }
 
+/**
+ * Handles the execution of a SequencePart
+ */
 class SequencePart extends AlfredExecutableSequenceElement {
 
+    /**
+     * @param {jQuery} element representation of SequencePart element
+     * @param {Trial} trial parent Trial object that handles the execution of this part
+     */
     constructor(element, trial) {
         super(element, eventNamespaces.sequencePart)
         this.trial = trial
@@ -138,11 +226,19 @@ class SequencePart extends AlfredExecutableSequenceElement {
         });
     }
 
+    /**
+     * Extension of start event
+     */
     start() {
         super.start();
         this.element.show()
     }
 
+    /**
+     * Merge promises to Promise.any
+     * This includes duration/timeouts and (for stimuli) possible user reactions.
+     * Meeting any of these promises will continue the execution of the parent trial
+     */
     promise() {
         let promises = []
 
@@ -153,14 +249,22 @@ class SequencePart extends AlfredExecutableSequenceElement {
             promises.push(reaction.promise())
         })
 
-        return  Promise.any(promises)
+        return Promise.any(promises)
     }
 
+    /**
+     * Extension of finish event
+     */
     finish() {
         super.finish();
         this.element.hide();
     }
 
+    /**
+     * Find hidden input element (stimuli only)
+     * @param {string} name
+     * @returns {null|jQuery|HTMLElement|*}
+     */
     findInput(name) {
         if(this.type !== types.stimulus) return null
         let inputName = this.element.data("input-" + name)
@@ -168,18 +272,35 @@ class SequencePart extends AlfredExecutableSequenceElement {
         return $(`[name="${inputName}"]`)
     }
 
+    /**
+     * Read value of hidden input element (stimuli only)
+     * @param {string} name
+     * @returns {null|*}
+     */
     readInput(name) {
         let input = this.findInput(name)
         if(!input) return null
         return input.attr("value")
     }
 
+    /**
+     * Write value of hidden input element (stimuli only)
+     * @param {string} name
+     * @param value
+     * @returns {null|*}
+     */
     writeInput(name, value) {
         let input = this.findInput(name)
         if(!input) return null
         input.attr("value", value)
     }
 
+    /**
+     * Timeout promise for handling durations and timeouts
+     * @param {int} ms time in milliseconds
+     * @returns {Promise<unknown>}
+     * @private
+     */
     _timer(ms) {
         return new Promise(res => setTimeout(() => {
             if(!this.readInput(inputs.reaction) || !this.readInput(inputs.time)) {
@@ -191,14 +312,34 @@ class SequencePart extends AlfredExecutableSequenceElement {
 
 }
 
+/**
+ * Representation of possible reaction to a stimulus
+ */
 class Reaction extends AlfredElement {
 
+    /**
+     * events to trigger
+     * @type {{triggered: string}}
+     */
     events = {
         triggered: "triggered",
     }
+    /**
+     * start time of reaction time measurement
+     * @type {number}
+     */
     start = 0
+    /**
+     * end time of reaction time measurement
+     * @type {number}
+     */
     end = 0
 
+    /**
+     *
+     * @param element
+     * @param sequencePart
+     */
     constructor(element, sequencePart) {
         super(element, eventNamespaces.reaction);
         this.sequencePart = sequencePart
@@ -206,6 +347,10 @@ class Reaction extends AlfredElement {
         this.key = parseInt(this.element.data("key"))
     }
 
+    /**
+     * Handles binding of onkeydown event to measure and write reaction
+     * @returns {Promise<unknown>}
+     */
     promise() {
         return new Promise(res => {
             let onKeydown = (e) => {
@@ -213,8 +358,8 @@ class Reaction extends AlfredElement {
                     return null
                 }
                 this.end = performance.now()
-                this.writeInput()
-                this.sequencePart.writeInput(this.id, this.end - this.start)
+                this.sequencePart.writeInput(inputs.reaction, this.id)
+                this.sequencePart.writeInput(inputs.time, this.end - this.start)
                 this.trigger(this.events.triggered)
                 res()
             }
@@ -228,62 +373,9 @@ class Reaction extends AlfredElement {
         })
     }
 
-    writeInput() {
-        let inputTimeName = this.sequencePart.element.data("input-time")
-        $(`[name="${inputTimeName}"]`).attr("value", this.end - this.start)
-
-        let inputReactionName = this.sequencePart.element.data("input-reaction")
-        $(`[name="${inputReactionName}"]`).attr("value", this.id)
-    }
-
-}
-
-
-function bindEventDebugDisplay() {
-    let events = {
-        reactionTimes: {
-            namespace: "art.reactionTimes",
-            start: "art.reactionTimes.start",
-            finish: "art.reactionTimes.finish",
-        },
-        trial: {
-            namespace: "art.trial",
-            start: "art.trial.start",
-            finish: "art.trial.finish",
-        },
-        sequencePart: {
-            namespace: "art.sequencePart",
-            start: "art.sequencePart.start",
-            finish: "art.sequencePart.finish",
-        },
-        reaction: {
-            namespace: "art.reaction",
-            triggered: "art.reaction.triggered",
-        }
-    }
-
-    let includeEvents = [
-        events.sequencePart.start,
-        events.sequencePart.finish,
-        events.reactionTimes.finish,
-    ]
-
-    let reactionElements = $(".reaction-times");
-    $.each(events, (i, elementEvents) => {
-        $.each(elementEvents, (i, eventName) => {
-            if (includeEvents.length !== 0 && !includeEvents.includes(eventName)) {
-                return null;
-            }
-            reactionElements.on(eventName, (e, context) => {
-                console.log(eventName + " " + context.id);
-            })
-        });
-    });
 }
 
 $(document).ready(function () {
-
-    bindEventDebugDisplay()
 
     $(".reaction-times").each((i, element) => {
         new ReactionTimes(element).execute();

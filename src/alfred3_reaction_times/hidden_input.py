@@ -5,7 +5,7 @@ from ._env import jinja_env
 # @inherit_kwargs
 class HiddenInput(InputElement):
     """
-    Provides a text entry field.
+    Provides a hidden entry field.
 
     Args:
         {kwargs}
