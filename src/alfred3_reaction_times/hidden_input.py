@@ -1,8 +1,10 @@
 from alfred3.element.core import InputElement
+from alfred3._helper import inherit_kwargs
+
 from ._env import jinja_env
 
 
-# @inherit_kwargs
+@inherit_kwargs
 class HiddenInput(InputElement):
     """
     Provides a hidden entry field.

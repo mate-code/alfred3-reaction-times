@@ -47,7 +47,7 @@ class ReactionTimes(Element):
 
 
             Example for adding reaction times measurement with complete trials
-            using a loop:
+            using a loop::
 
                 import alfred3 as al
                 import alfred3_reaction_times as art
@@ -105,7 +105,11 @@ class ReactionTimes(Element):
                 page += al.JavaScript(path=str(js_filepath))
 
             with importlib.resources.path(css, "layout.css") as css_filepath:
-                page += al.Style(path=str(css_filepath))
+                # import pdb
+                # pdb.set_trace()
+                page_css = al.Style(code=css_filepath.read_text())
+                page += page_css
+
 
         for trial in self.trials:
             if trial is None:

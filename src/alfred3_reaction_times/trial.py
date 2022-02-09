@@ -24,7 +24,7 @@ class Trial(Element):
 
         Examples:
 
-            Basic example for adding trials:
+            Basic example for adding trials::
 
                 import alfred3 as al
                 import alfred3_reaction_times as art
@@ -58,7 +58,7 @@ class Trial(Element):
 
 
             Example for adding trials with complete trials
-            using a loop:
+            using a loop::
 
                 import alfred3 as al
                 import alfred3_reaction_times as art

@@ -1,12 +1,10 @@
 
-body {
-    background-color: #FF0000!important;
-}
-
 .trial {
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: none;
 }
 
 .sequence-part {
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: none;
 }
