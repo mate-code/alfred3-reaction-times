@@ -1,8 +1,11 @@
 import alfred3 as al
 from alfred3.element.core import Element
+from alfred3.exceptions import AlfredError
 
 from ._env import jinja_env
 from .keycodes import keycodes
+
+from .hidden_input import HiddenInput
 
 
 class SequencePart(Element):
@@ -60,6 +63,9 @@ class Reaction(Element):
         else:
             raise KeyError("Unknown key " + key)
 
+        if kwargs["name"] == "--TIMEOUT--":
+            raise AlfredError("Forbidden name --TIMEOUT--")
+
     @property
     def template_data(self):
         d = super().template_data
@@ -92,19 +98,30 @@ class Fixation(SequencePart):
 
 class Stimulus(SequencePart):
     type = "stimulus"
+    element_template = jinja_env.get_template("Stimulus.html.j2")
+
+    input_time = None
+    input_reaction = None
 
     def __init__(
             self,
             element: Element,
             *reactions: Reaction,
-            timeout: float = 0,
             **kwargs
     ):
-        super().__init__(element=element, duration=timeout, **kwargs)
+        super().__init__(element=element, **kwargs)
         self.reactions = reactions
 
     def added_to_page(self, page):
         super().added_to_page(page)
+
+        self.input_time = HiddenInput(name=self.name + "_time")
+        self.input_time.display_standalone = False
+        page += self.input_time
+
+        self.input_reaction = HiddenInput(name=self.name + "_reaction")
+        self.input_reaction.display_standalone = False
+        page += self.input_reaction
 
         for reaction in self.reactions:
             if reaction is None:
@@ -115,7 +132,11 @@ class Stimulus(SequencePart):
     @property
     def template_data(self):
         d = super().template_data
-        d["element_html"] += "".join([r.web_widget for r in self.reactions])
+        d["reaction_html"] = "".join([r.web_widget for r in self.reactions])
+        d["input_time_html"] = self.input_time.web_widget
+        d["input_time_name"] = self.input_time.name
+        d["input_reaction_html"] = self.input_reaction.web_widget
+        d["input_reaction_name"] = self.input_reaction.name
         return d
 
 

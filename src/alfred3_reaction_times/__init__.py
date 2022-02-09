@@ -8,3 +8,5 @@ from .sequence_part import Pause
 from .sequence_part import Fixation
 from .sequence_part import Stimulus
 from .sequence_part import Feedback
+
+from .hidden_input import HiddenInput

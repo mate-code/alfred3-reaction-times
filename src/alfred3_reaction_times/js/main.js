@@ -12,6 +12,11 @@ const types = {
     feedback: "feedback",
 }
 
+const inputs = {
+    reaction: "reaction",
+    time: "time"
+}
+
 class AlfredElement {
 
     constructor(element, eventNamespace) {
@@ -142,7 +147,7 @@ class SequencePart extends AlfredExecutableSequenceElement {
         let promises = []
 
         if(this.duration !== 0) {
-            promises.push(this.timer(this.duration))
+            promises.push(this._timer(this.duration))
         }
         this.reactions.forEach(reaction => {
             promises.push(reaction.promise())
@@ -156,8 +161,32 @@ class SequencePart extends AlfredExecutableSequenceElement {
         this.element.hide();
     }
 
-    timer(ms) {
-        return new Promise(res => setTimeout(res, ms))
+    findInput(name) {
+        if(this.type !== types.stimulus) return null
+        let inputName = this.element.data("input-" + name)
+        if(!inputName) return null
+        return $(`[name="${inputName}"]`)
+    }
+
+    readInput(name) {
+        let input = this.findInput(name)
+        if(!input) return null
+        return input.attr("value")
+    }
+
+    writeInput(name, value) {
+        let input = this.findInput(name)
+        if(!input) return null
+        input.attr("value", value)
+    }
+
+    _timer(ms) {
+        return new Promise(res => setTimeout(() => {
+            if(!this.readInput(inputs.reaction) || !this.readInput(inputs.time)) {
+                this.writeInput(inputs.reaction, "--TIMEOUT--")
+            }
+            res()
+        }, ms))
     }
 
 }
@@ -167,6 +196,8 @@ class Reaction extends AlfredElement {
     events = {
         triggered: "triggered",
     }
+    start = 0
+    end = 0
 
     constructor(element, sequencePart) {
         super(element, eventNamespaces.reaction);
@@ -181,9 +212,13 @@ class Reaction extends AlfredElement {
                 if(this.key && e.which !== this.key) {
                     return null
                 }
+                this.end = performance.now()
+                this.writeInput()
+                this.sequencePart.writeInput(this.id, this.end - this.start)
                 this.trigger(this.events.triggered)
                 res()
             }
+            this.start = performance.now()
             $(document).on("keydown", onKeydown)
 
             this.sequencePart.on(
@@ -191,6 +226,14 @@ class Reaction extends AlfredElement {
                 () => $(document).off("keydown", onKeydown)
             )
         })
+    }
+
+    writeInput() {
+        let inputTimeName = this.sequencePart.element.data("input-time")
+        $(`[name="${inputTimeName}"]`).attr("value", this.end - this.start)
+
+        let inputReactionName = this.sequencePart.element.data("input-reaction")
+        $(`[name="${inputReactionName}"]`).attr("value", this.id)
     }
 
 }
