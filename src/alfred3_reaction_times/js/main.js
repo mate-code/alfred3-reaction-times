@@ -134,10 +134,14 @@ class ReactionTimes extends AlfredExecutableSequenceElement {
     constructor(element) {
         super(element, eventNamespaces.reactionTimes)
 
+        let maxHeight = 0
         this.trials = []
         this.element.find(".trial").each((i, trialElement) => {
+            trialElement = $(trialElement)
             this.trials.push(new Trial(trialElement, this))
+            if(trialElement.height() > maxHeight) maxHeight = trialElement.height()
         });
+        this.element.css("height", maxHeight + "px")
     }
 
     /**
@@ -170,10 +174,14 @@ class Trial extends AlfredExecutableSequenceElement {
         super(element, eventNamespaces.trial)
         this.reactionTimes = reactionTimes
 
+        let maxHeight = 0
         this.sequence = []
         this.element.find(".sequence-part").each((i, sequencePartElement) => {
+            sequencePartElement = $(sequencePartElement)
             this.sequence.push(new SequencePart(sequencePartElement, this))
+            if(sequencePartElement.height() > maxHeight) maxHeight = sequencePartElement.height()
         });
+        this.element.css("height", maxHeight + "px")
     }
 
     /**
@@ -181,7 +189,7 @@ class Trial extends AlfredExecutableSequenceElement {
      */
     start() {
         super.start();
-        this.element.show()
+        this.element.css("visibility", "inherit")
     }
 
     /**
@@ -199,7 +207,7 @@ class Trial extends AlfredExecutableSequenceElement {
      */
     finish() {
         super.finish();
-        this.element.hide();
+        this.element.css("visibility", "hidden")
     }
 
 }
@@ -231,7 +239,7 @@ class SequencePart extends AlfredExecutableSequenceElement {
      */
     start() {
         super.start();
-        this.element.show()
+        this.element.css("visibility", "inherit")
     }
 
     /**
@@ -257,7 +265,7 @@ class SequencePart extends AlfredExecutableSequenceElement {
      */
     finish() {
         super.finish();
-        this.element.hide();
+        this.element.css("visibility", "hidden")
     }
 
     /**

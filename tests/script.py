@@ -7,6 +7,8 @@ exp = al.Experiment()
 class Demo(al.Page):
 
     def on_exp_access(self):
+        self += al.Text("Test start")
+
         reactions = art.ReactionTimes()
         stimuli = ("A", "B", "C", "D", "E", "F", "G")
 
@@ -43,6 +45,8 @@ class Demo(al.Page):
             reactions += trial
 
         self += reactions
+
+        self += al.Text("Test end")
 
 
 @exp.member
