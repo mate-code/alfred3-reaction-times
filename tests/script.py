@@ -1,9 +1,94 @@
-from random import random
-from random import shuffle
+import random
 
 import alfred3 as al
 import alfred3_reaction_times as art
 exp = al.Experiment()
+
+feelings = [
+    # positive
+    "beeindruckt",
+    "dankbar",
+    "ermutigt",
+    "freudig",
+    "gluecklich",
+    "lebhaft",
+    "zufrieden",
+    # negative
+    "aggressiv",
+    "bedrueckt",
+    "deprimiert",
+    "empoert",
+    "gehaessig",
+    "panisch",
+    "veraengstigt",
+]
+
+sci_fi = [
+    # Star Wars
+    "Yoda",
+    "Obi Wan",
+    "Skywalker",
+    "Leia",
+    "Han Solo",
+    "Ewoks",
+    "Lightsaber",
+    # Star Trek
+    "Kirk",
+    "Spock",
+    "McCoy",
+    "Uhura",
+    "Sulu",
+    "Vulcans",
+    "Phaser",
+]
+
+
+@exp.member
+class AttributeDiscrimination(al.Page):
+
+    def on_exp_access(self):
+        self += al.Row(
+            al.Text(
+"""
+**Positiv**
+
+A drücken
+""",
+                render_markdown=True,
+                align="left"
+            ),
+            al.Text(
+"""
+**Negativ**
+
+L drücken
+""",
+                render_markdown=True,
+                align="right"
+            ),
+        )
+
+        reactions = art.ReactionTimes()
+        rand_feelings = random.sample(feelings, len(feelings))
+        i = 0
+        while i < len(rand_feelings):
+            feeling = rand_feelings[i]
+            trial = art.Trial(name=f"attribute_discrimination_trial_{i}")
+            # Pause between 1 and 2 seconds
+            trial += art.Pause(
+                duration=1 + random.random()
+            )
+            trial += art.Stimulus(
+                al.Text(feeling, align="center"),
+                art.Reaction("a", name=f"attribute_discrimination_{feeling}_positive"),
+                art.Reaction("l", name=f"attribute_discrimination_{feeling}_negative"),
+                name=f"attribute_discrimination_{feeling}",
+                duration=3
+            )
+            reactions += trial
+            i = i+1
+
+        self += reactions
 
 
 @exp.member
