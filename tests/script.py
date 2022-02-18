@@ -1,6 +1,34 @@
+from random import random
+from random import shuffle
+
 import alfred3 as al
 import alfred3_reaction_times as art
 exp = al.Experiment()
+
+
+@exp.member
+class DemoImageLoading(al.Page):
+
+    def on_exp_access(self):
+        self += al.Text("Test start")
+
+        reactions = art.ReactionTimes()
+        stimuli = range(1, 50)
+
+        for stimulus in stimuli:
+            trial = art.Trial()
+            trial += art.Stimulus(
+                al.Image(url=f"https://dummyimage.com/4096x2304/222/ccc.png&text=Image+{stimulus}"),
+                art.Reaction("y", name=f"reaction_{stimulus}_yes"),
+                art.Reaction("n", name=f"reaction_{stimulus}_no"),
+                name=f"stimulus_{stimulus}",
+                duration=3
+            )
+            reactions += trial
+
+        self += reactions
+
+        self += al.Text("Test end")
 
 
 @exp.member

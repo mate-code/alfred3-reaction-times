@@ -134,14 +134,30 @@ class ReactionTimes extends AlfredExecutableSequenceElement {
     constructor(element) {
         super(element, eventNamespaces.reactionTimes)
 
-        let maxHeight = 0
-        this.trials = []
-        this.element.find(".trial").each((i, trialElement) => {
-            trialElement = $(trialElement)
-            this.trials.push(new Trial(trialElement, this))
-            if(trialElement.height() > maxHeight) maxHeight = trialElement.height()
-        });
-        this.element.css("height", maxHeight + "px")
+        this.allImagesLoaded().then(() => {
+            let maxHeight = 0
+            this.trials = []
+            this.element.find(".trial").each((i, trialElement) => {
+                trialElement = $(trialElement)
+                this.trials.push(new Trial(trialElement, this))
+                if(trialElement.height() > maxHeight) maxHeight = trialElement.height()
+            });
+            this.element.css("height", maxHeight + "px")
+            this.execute()
+        })
+    }
+
+    /**
+     * Promise to wait for all images to be fully loaded
+     */
+    async allImagesLoaded() {
+        let loadPromises = []
+        this.element.find("img").each((i, imageElement) => {
+            loadPromises.push(new Promise(res => {
+                $("<img>").on("load", () => res()).attr("src", $(imageElement).attr("src"))
+            }))
+        })
+        await Promise.all(loadPromises)
     }
 
     /**
@@ -386,7 +402,7 @@ class Reaction extends AlfredElement {
 $(document).ready(function () {
 
     $(".reaction-times").each((i, element) => {
-        new ReactionTimes(element).execute();
+        new ReactionTimes(element);
     });
 
 });
