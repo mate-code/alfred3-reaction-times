@@ -18,13 +18,13 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/mate-code/alfred-reaction-times",
-    packages=setuptools.find_packages("src"),
+    packages=setuptools.find_packages("source"),
     package_data={
         "alfred3_reaction_times": [
             "templates/*",
         ]
     },
-    package_dir={"": "src"},
+    package_dir={"": "source"},
     install_requires=[
         "alfred3>=2.3.1",
         "jinja2>=2.11",
