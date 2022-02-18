@@ -1,0 +1,6 @@
+Trial.template\_data
+================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.template_data

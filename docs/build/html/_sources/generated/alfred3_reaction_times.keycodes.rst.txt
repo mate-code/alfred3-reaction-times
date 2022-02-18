@@ -1,0 +1,6 @@
+alfred3\_reaction\_times.keycodes
+=================================
+
+.. currentmodule:: alfred3_reaction_times
+
+.. autodata:: keycodes

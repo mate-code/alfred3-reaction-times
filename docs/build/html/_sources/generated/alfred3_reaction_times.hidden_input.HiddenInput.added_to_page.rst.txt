@@ -1,0 +1,6 @@
+HiddenInput.added\_to\_page()
+=============================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. automethod:: HiddenInput.added_to_page

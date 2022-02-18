@@ -1,0 +1,6 @@
+Trial.page
+=======================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.page

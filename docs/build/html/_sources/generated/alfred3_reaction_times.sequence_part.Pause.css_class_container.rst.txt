@@ -1,0 +1,6 @@
+Pause.css\_class\_container
+==============================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Pause.css_class_container

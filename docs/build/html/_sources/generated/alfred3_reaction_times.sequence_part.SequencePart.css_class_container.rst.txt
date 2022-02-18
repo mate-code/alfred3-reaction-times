@@ -1,0 +1,6 @@
+SequencePart.css\_class\_container
+=====================================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: SequencePart.css_class_container

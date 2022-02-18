@@ -1,0 +1,6 @@
+Feedback.add\_css()
+=====================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Feedback.add_css

@@ -1,0 +1,6 @@
+HiddenInput.show\_hints
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.show_hints

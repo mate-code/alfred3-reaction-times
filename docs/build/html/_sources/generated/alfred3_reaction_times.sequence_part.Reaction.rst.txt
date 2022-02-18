@@ -1,0 +1,83 @@
+Reaction
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: Reaction
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~Reaction.add_css
+   
+   
+      ~Reaction.add_js
+   
+   
+      ~Reaction.added_to_experiment
+   
+   
+      ~Reaction.added_to_page
+   
+   
+      ~Reaction.prepare_web_widget
+   
+   
+      ~Reaction.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~Reaction.base_template
+         ~Reaction.converted_width
+         ~Reaction.css_class_container
+         ~Reaction.css_class_element
+         ~Reaction.css_code
+         ~Reaction.css_urls
+         ~Reaction.display_standalone
+         ~Reaction.element_template
+         ~Reaction.element_width
+         ~Reaction.exp
+         ~Reaction.experiment
+         ~Reaction.font_size
+         ~Reaction.js_code
+         ~Reaction.js_urls
+         ~Reaction.name
+         ~Reaction.page
+         ~Reaction.position
+         ~Reaction.section
+         ~Reaction.short_tree
+         ~Reaction.should_be_shown
+         ~Reaction.showif
+         ~Reaction.template_data
+         ~Reaction.tree
+         ~Reaction.web_widget
+         ~Reaction.width
+         ~Reaction.align
+         ~Reaction.height
+         ~Reaction.instance_log
+         ~Reaction.log
+      
+   
+   
+   

@@ -1,0 +1,6 @@
+Trial.added\_to\_experiment()
+======================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. automethod:: Trial.added_to_experiment

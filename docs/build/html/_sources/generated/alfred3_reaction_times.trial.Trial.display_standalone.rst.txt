@@ -1,0 +1,6 @@
+Trial.display\_standalone
+=====================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.display_standalone

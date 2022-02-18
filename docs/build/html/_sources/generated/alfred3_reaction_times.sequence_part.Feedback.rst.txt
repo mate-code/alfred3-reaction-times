@@ -1,0 +1,84 @@
+Feedback
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: Feedback
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~Feedback.add_css
+   
+   
+      ~Feedback.add_js
+   
+   
+      ~Feedback.added_to_experiment
+   
+   
+      ~Feedback.added_to_page
+   
+   
+      ~Feedback.prepare_web_widget
+   
+   
+      ~Feedback.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~Feedback.base_template
+         ~Feedback.converted_width
+         ~Feedback.css_class_container
+         ~Feedback.css_class_element
+         ~Feedback.css_code
+         ~Feedback.css_urls
+         ~Feedback.display_standalone
+         ~Feedback.element_template
+         ~Feedback.element_width
+         ~Feedback.exp
+         ~Feedback.experiment
+         ~Feedback.font_size
+         ~Feedback.js_code
+         ~Feedback.js_urls
+         ~Feedback.name
+         ~Feedback.page
+         ~Feedback.position
+         ~Feedback.section
+         ~Feedback.short_tree
+         ~Feedback.should_be_shown
+         ~Feedback.showif
+         ~Feedback.template_data
+         ~Feedback.tree
+         ~Feedback.type
+         ~Feedback.web_widget
+         ~Feedback.width
+         ~Feedback.align
+         ~Feedback.height
+         ~Feedback.instance_log
+         ~Feedback.log
+      
+   
+   
+   

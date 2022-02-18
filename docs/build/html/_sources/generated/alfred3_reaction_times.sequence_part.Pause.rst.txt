@@ -1,0 +1,84 @@
+Pause
+==========================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: Pause
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~Pause.add_css
+   
+   
+      ~Pause.add_js
+   
+   
+      ~Pause.added_to_experiment
+   
+   
+      ~Pause.added_to_page
+   
+   
+      ~Pause.prepare_web_widget
+   
+   
+      ~Pause.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~Pause.base_template
+         ~Pause.converted_width
+         ~Pause.css_class_container
+         ~Pause.css_class_element
+         ~Pause.css_code
+         ~Pause.css_urls
+         ~Pause.display_standalone
+         ~Pause.element_template
+         ~Pause.element_width
+         ~Pause.exp
+         ~Pause.experiment
+         ~Pause.font_size
+         ~Pause.js_code
+         ~Pause.js_urls
+         ~Pause.name
+         ~Pause.page
+         ~Pause.position
+         ~Pause.section
+         ~Pause.short_tree
+         ~Pause.should_be_shown
+         ~Pause.showif
+         ~Pause.template_data
+         ~Pause.tree
+         ~Pause.type
+         ~Pause.web_widget
+         ~Pause.width
+         ~Pause.align
+         ~Pause.height
+         ~Pause.instance_log
+         ~Pause.log
+      
+   
+   
+   

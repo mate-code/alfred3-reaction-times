@@ -1,0 +1,6 @@
+Feedback.should\_be\_shown
+=============================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Feedback.should_be_shown

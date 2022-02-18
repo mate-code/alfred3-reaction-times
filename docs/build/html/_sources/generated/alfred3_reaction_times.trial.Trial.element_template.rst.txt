@@ -1,0 +1,6 @@
+Trial.element\_template
+===================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoattribute:: Trial.element_template

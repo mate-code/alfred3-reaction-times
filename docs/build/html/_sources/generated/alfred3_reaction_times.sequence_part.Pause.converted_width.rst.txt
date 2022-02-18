@@ -1,0 +1,6 @@
+Pause.converted\_width
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Pause.converted_width

@@ -1,0 +1,32 @@
+alfred3\_reaction\_times.reaction\_times
+=====================================
+
+.. automodule:: alfred3_reaction_times.reaction_times
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: autosummary/class.rst
+      :nosignatures:
+   
+      ReactionTimes
+   
+   
+
+   
+   
+   
+
+
+

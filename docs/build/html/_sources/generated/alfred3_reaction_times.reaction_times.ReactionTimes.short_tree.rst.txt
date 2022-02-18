@@ -1,0 +1,6 @@
+ReactionTimes.short\_tree
+==============================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.short_tree

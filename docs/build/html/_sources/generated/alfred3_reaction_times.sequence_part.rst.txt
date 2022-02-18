@@ -1,0 +1,37 @@
+alfred3\_reaction\_times.sequence\_part
+====================================
+
+.. automodule:: alfred3_reaction_times.sequence_part
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: autosummary/class.rst
+      :nosignatures:
+   
+      Feedback
+      Fixation
+      Pause
+      Reaction
+      SequencePart
+      Stimulus
+   
+   
+
+   
+   
+   
+
+
+

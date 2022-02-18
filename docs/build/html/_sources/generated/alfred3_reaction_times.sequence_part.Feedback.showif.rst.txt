@@ -1,0 +1,6 @@
+Feedback.showif
+====================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Feedback.showif

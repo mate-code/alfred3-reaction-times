@@ -1,0 +1,6 @@
+HiddenInput.short\_tree
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.short_tree

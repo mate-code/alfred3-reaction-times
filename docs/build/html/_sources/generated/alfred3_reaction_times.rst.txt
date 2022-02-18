@@ -1,0 +1,37 @@
+﻿alfred3\_reaction\_times
+======================
+
+.. automodule:: alfred3_reaction_times
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   alfred3_reaction_times.css
+   alfred3_reaction_times.hidden_input
+   alfred3_reaction_times.js
+   alfred3_reaction_times.keycodes
+   alfred3_reaction_times.reaction_times
+   alfred3_reaction_times.sequence_part
+   alfred3_reaction_times.trial
+

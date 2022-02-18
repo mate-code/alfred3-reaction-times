@@ -1,0 +1,6 @@
+Stimulus.add\_js()
+====================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Stimulus.add_js

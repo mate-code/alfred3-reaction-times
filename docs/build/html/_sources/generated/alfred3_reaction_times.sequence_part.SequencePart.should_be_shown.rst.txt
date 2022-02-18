@@ -1,0 +1,6 @@
+SequencePart.should\_be\_shown
+=================================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: SequencePart.should_be_shown

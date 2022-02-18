@@ -1,0 +1,6 @@
+Fixation.template\_data
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Fixation.template_data

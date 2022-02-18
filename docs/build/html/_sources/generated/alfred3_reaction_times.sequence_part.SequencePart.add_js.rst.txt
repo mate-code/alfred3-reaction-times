@@ -1,0 +1,6 @@
+SequencePart.add\_js()
+========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: SequencePart.add_js

@@ -1,0 +1,6 @@
+Trial.experiment
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.experiment

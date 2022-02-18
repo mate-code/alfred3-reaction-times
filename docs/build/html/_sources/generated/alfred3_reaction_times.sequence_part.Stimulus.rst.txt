@@ -1,0 +1,86 @@
+Stimulus
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: Stimulus
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~Stimulus.add_css
+   
+   
+      ~Stimulus.add_js
+   
+   
+      ~Stimulus.added_to_experiment
+   
+   
+      ~Stimulus.added_to_page
+   
+   
+      ~Stimulus.prepare_web_widget
+   
+   
+      ~Stimulus.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~Stimulus.base_template
+         ~Stimulus.converted_width
+         ~Stimulus.css_class_container
+         ~Stimulus.css_class_element
+         ~Stimulus.css_code
+         ~Stimulus.css_urls
+         ~Stimulus.display_standalone
+         ~Stimulus.element_template
+         ~Stimulus.element_width
+         ~Stimulus.exp
+         ~Stimulus.experiment
+         ~Stimulus.font_size
+         ~Stimulus.input_reaction
+         ~Stimulus.input_time
+         ~Stimulus.js_code
+         ~Stimulus.js_urls
+         ~Stimulus.name
+         ~Stimulus.page
+         ~Stimulus.position
+         ~Stimulus.section
+         ~Stimulus.short_tree
+         ~Stimulus.should_be_shown
+         ~Stimulus.showif
+         ~Stimulus.template_data
+         ~Stimulus.tree
+         ~Stimulus.type
+         ~Stimulus.web_widget
+         ~Stimulus.width
+         ~Stimulus.align
+         ~Stimulus.height
+         ~Stimulus.instance_log
+         ~Stimulus.log
+      
+   
+   
+   

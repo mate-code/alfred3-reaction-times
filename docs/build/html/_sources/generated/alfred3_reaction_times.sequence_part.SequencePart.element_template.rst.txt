@@ -1,0 +1,6 @@
+SequencePart.element\_template
+==================================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoattribute:: SequencePart.element_template

@@ -1,0 +1,6 @@
+Trial.add\_js()
+=========================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. automethod:: Trial.add_js

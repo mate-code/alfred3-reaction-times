@@ -1,0 +1,6 @@
+Trial.font\_size
+============================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.font_size

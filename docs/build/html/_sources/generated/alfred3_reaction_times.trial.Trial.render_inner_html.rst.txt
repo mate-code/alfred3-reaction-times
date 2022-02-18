@@ -1,0 +1,6 @@
+Trial.render\_inner\_html()
+====================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. automethod:: Trial.render_inner_html

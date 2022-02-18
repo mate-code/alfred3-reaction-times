@@ -1,0 +1,6 @@
+Stimulus.added\_to\_page()
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Stimulus.added_to_page

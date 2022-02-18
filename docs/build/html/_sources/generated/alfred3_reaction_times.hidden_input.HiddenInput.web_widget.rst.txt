@@ -1,0 +1,6 @@
+HiddenInput.web\_widget
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.web_widget

@@ -1,0 +1,84 @@
+SequencePart
+=================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: SequencePart
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~SequencePart.add_css
+   
+   
+      ~SequencePart.add_js
+   
+   
+      ~SequencePart.added_to_experiment
+   
+   
+      ~SequencePart.added_to_page
+   
+   
+      ~SequencePart.prepare_web_widget
+   
+   
+      ~SequencePart.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~SequencePart.base_template
+         ~SequencePart.converted_width
+         ~SequencePart.css_class_container
+         ~SequencePart.css_class_element
+         ~SequencePart.css_code
+         ~SequencePart.css_urls
+         ~SequencePart.display_standalone
+         ~SequencePart.element_template
+         ~SequencePart.element_width
+         ~SequencePart.exp
+         ~SequencePart.experiment
+         ~SequencePart.font_size
+         ~SequencePart.js_code
+         ~SequencePart.js_urls
+         ~SequencePart.name
+         ~SequencePart.page
+         ~SequencePart.position
+         ~SequencePart.section
+         ~SequencePart.short_tree
+         ~SequencePart.should_be_shown
+         ~SequencePart.showif
+         ~SequencePart.template_data
+         ~SequencePart.tree
+         ~SequencePart.type
+         ~SequencePart.web_widget
+         ~SequencePart.width
+         ~SequencePart.align
+         ~SequencePart.height
+         ~SequencePart.instance_log
+         ~SequencePart.log
+      
+   
+   
+   

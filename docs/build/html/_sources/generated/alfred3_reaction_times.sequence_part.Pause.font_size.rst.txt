@@ -1,0 +1,6 @@
+Pause.font\_size
+====================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Pause.font_size

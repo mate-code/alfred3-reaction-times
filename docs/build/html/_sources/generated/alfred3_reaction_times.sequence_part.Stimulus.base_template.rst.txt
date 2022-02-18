@@ -1,0 +1,6 @@
+Stimulus.base\_template
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoattribute:: Stimulus.base_template

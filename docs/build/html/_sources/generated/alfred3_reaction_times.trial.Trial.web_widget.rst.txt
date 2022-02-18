@@ -1,0 +1,6 @@
+Trial.web\_widget
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.web_widget

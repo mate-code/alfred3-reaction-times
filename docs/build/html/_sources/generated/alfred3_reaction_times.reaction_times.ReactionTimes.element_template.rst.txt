@@ -1,0 +1,6 @@
+ReactionTimes.element\_template
+====================================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoattribute:: ReactionTimes.element_template

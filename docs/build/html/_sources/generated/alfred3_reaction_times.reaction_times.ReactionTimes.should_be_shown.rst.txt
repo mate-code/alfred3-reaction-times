@@ -1,0 +1,6 @@
+ReactionTimes.should\_be\_shown
+===================================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.should_be_shown

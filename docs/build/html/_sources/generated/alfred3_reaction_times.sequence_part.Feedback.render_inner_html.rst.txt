@@ -1,0 +1,6 @@
+Feedback.render\_inner\_html()
+===============================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Feedback.render_inner_html

@@ -1,0 +1,6 @@
+Feedback.template\_data
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Feedback.template_data

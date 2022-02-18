@@ -1,0 +1,6 @@
+Trial.converted\_width
+==================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.converted_width

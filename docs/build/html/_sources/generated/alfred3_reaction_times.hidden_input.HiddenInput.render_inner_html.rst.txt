@@ -1,0 +1,6 @@
+HiddenInput.render\_inner\_html()
+=================================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. automethod:: HiddenInput.render_inner_html

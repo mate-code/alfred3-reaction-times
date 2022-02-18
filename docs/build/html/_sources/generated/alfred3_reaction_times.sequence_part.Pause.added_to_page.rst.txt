@@ -1,0 +1,6 @@
+Pause.added\_to\_page()
+========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Pause.added_to_page

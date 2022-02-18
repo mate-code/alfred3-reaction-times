@@ -1,0 +1,6 @@
+HiddenInput.element\_template
+================================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoattribute:: HiddenInput.element_template

@@ -1,0 +1,6 @@
+ReactionTimes.web\_widget
+==============================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.web_widget

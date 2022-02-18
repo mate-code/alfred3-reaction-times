@@ -1,0 +1,6 @@
+ReactionTimes.added\_to\_page()
+=================================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. automethod:: ReactionTimes.added_to_page

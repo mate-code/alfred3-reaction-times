@@ -1,0 +1,6 @@
+Pause.base\_template
+========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoattribute:: Pause.base_template

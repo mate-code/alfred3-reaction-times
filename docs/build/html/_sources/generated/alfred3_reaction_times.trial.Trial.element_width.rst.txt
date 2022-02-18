@@ -1,0 +1,6 @@
+Trial.element\_width
+================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.element_width

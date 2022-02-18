@@ -1,0 +1,6 @@
+HiddenInput.validate\_data()
+=============================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. automethod:: HiddenInput.validate_data

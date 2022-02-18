@@ -1,0 +1,6 @@
+Stimulus.prepare\_web\_widget()
+================================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Stimulus.prepare_web_widget

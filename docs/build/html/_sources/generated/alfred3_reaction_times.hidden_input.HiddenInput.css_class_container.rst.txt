@@ -1,0 +1,6 @@
+HiddenInput.css\_class\_container
+===================================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.css_class_container

@@ -1,0 +1,6 @@
+HiddenInput.add\_css()
+=======================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. automethod:: HiddenInput.add_css

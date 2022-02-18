@@ -1,0 +1,6 @@
+Reaction.css\_class\_element
+===============================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Reaction.css_class_element

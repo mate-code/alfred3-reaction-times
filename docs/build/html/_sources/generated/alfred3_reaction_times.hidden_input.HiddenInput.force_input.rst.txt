@@ -1,0 +1,6 @@
+HiddenInput.force\_input
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.force_input

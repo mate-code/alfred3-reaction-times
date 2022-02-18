@@ -1,0 +1,6 @@
+ReactionTimes.render\_inner\_html()
+=====================================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. automethod:: ReactionTimes.render_inner_html

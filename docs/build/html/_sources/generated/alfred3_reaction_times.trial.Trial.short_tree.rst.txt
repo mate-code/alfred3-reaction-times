@@ -1,0 +1,6 @@
+Trial.short\_tree
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.short_tree

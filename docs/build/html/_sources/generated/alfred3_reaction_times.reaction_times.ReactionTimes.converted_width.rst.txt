@@ -1,0 +1,6 @@
+ReactionTimes.converted\_width
+===================================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.converted_width

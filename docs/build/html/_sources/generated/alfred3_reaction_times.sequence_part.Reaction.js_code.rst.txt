@@ -1,0 +1,6 @@
+Reaction.js\_code
+=====================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Reaction.js_code

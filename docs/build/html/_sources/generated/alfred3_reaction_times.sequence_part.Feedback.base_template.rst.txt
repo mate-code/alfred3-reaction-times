@@ -1,0 +1,6 @@
+Feedback.base\_template
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoattribute:: Feedback.base_template

@@ -1,0 +1,6 @@
+Stimulus.exp
+=================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Stimulus.exp

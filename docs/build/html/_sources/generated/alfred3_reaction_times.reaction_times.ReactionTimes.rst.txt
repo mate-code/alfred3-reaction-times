@@ -1,0 +1,83 @@
+ReactionTimes
+===================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoclass:: ReactionTimes
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~ReactionTimes.add_css
+   
+   
+      ~ReactionTimes.add_js
+   
+   
+      ~ReactionTimes.added_to_experiment
+   
+   
+      ~ReactionTimes.added_to_page
+   
+   
+      ~ReactionTimes.prepare_web_widget
+   
+   
+      ~ReactionTimes.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~ReactionTimes.base_template
+         ~ReactionTimes.converted_width
+         ~ReactionTimes.css_class_container
+         ~ReactionTimes.css_class_element
+         ~ReactionTimes.css_code
+         ~ReactionTimes.css_urls
+         ~ReactionTimes.display_standalone
+         ~ReactionTimes.element_template
+         ~ReactionTimes.element_width
+         ~ReactionTimes.exp
+         ~ReactionTimes.experiment
+         ~ReactionTimes.font_size
+         ~ReactionTimes.js_code
+         ~ReactionTimes.js_urls
+         ~ReactionTimes.name
+         ~ReactionTimes.page
+         ~ReactionTimes.position
+         ~ReactionTimes.section
+         ~ReactionTimes.short_tree
+         ~ReactionTimes.should_be_shown
+         ~ReactionTimes.showif
+         ~ReactionTimes.template_data
+         ~ReactionTimes.tree
+         ~ReactionTimes.web_widget
+         ~ReactionTimes.width
+         ~ReactionTimes.align
+         ~ReactionTimes.height
+         ~ReactionTimes.instance_log
+         ~ReactionTimes.log
+      
+   
+   
+   

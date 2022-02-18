@@ -1,0 +1,6 @@
+Feedback.converted\_width
+=============================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Feedback.converted_width

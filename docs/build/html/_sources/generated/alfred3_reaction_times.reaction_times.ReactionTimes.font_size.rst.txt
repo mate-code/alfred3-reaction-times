@@ -1,0 +1,6 @@
+ReactionTimes.font\_size
+=============================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.font_size

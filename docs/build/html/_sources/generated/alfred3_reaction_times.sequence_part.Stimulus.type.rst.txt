@@ -1,0 +1,6 @@
+Stimulus.type
+==================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoattribute:: Stimulus.type

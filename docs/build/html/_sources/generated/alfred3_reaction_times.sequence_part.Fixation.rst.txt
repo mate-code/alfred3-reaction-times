@@ -1,0 +1,84 @@
+Fixation
+=============================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoclass:: Fixation
+   :show-inheritance:
+
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      :toctree:
+      
+   
+   
+   
+      ~Fixation.add_css
+   
+   
+      ~Fixation.add_js
+   
+   
+      ~Fixation.added_to_experiment
+   
+   
+      ~Fixation.added_to_page
+   
+   
+      ~Fixation.prepare_web_widget
+   
+   
+      ~Fixation.render_inner_html
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :template: autosummary/attribute.rst
+      :toctree:
+
+      
+         ~Fixation.base_template
+         ~Fixation.converted_width
+         ~Fixation.css_class_container
+         ~Fixation.css_class_element
+         ~Fixation.css_code
+         ~Fixation.css_urls
+         ~Fixation.display_standalone
+         ~Fixation.element_template
+         ~Fixation.element_width
+         ~Fixation.exp
+         ~Fixation.experiment
+         ~Fixation.font_size
+         ~Fixation.js_code
+         ~Fixation.js_urls
+         ~Fixation.name
+         ~Fixation.page
+         ~Fixation.position
+         ~Fixation.section
+         ~Fixation.short_tree
+         ~Fixation.should_be_shown
+         ~Fixation.showif
+         ~Fixation.template_data
+         ~Fixation.tree
+         ~Fixation.type
+         ~Fixation.web_widget
+         ~Fixation.width
+         ~Fixation.align
+         ~Fixation.height
+         ~Fixation.instance_log
+         ~Fixation.log
+      
+   
+   
+   

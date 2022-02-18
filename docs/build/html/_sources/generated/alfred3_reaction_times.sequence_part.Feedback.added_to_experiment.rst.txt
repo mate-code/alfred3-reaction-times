@@ -1,0 +1,6 @@
+Feedback.added\_to\_experiment()
+=================================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. automethod:: Feedback.added_to_experiment

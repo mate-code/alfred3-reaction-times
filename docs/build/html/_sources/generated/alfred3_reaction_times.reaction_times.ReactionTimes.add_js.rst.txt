@@ -1,0 +1,6 @@
+ReactionTimes.add\_js()
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. automethod:: ReactionTimes.add_js

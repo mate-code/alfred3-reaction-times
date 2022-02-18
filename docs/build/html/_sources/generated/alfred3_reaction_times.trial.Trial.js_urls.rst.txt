@@ -1,0 +1,6 @@
+Trial.js\_urls
+==========================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.js_urls

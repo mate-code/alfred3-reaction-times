@@ -1,0 +1,6 @@
+HiddenInput.leftlab
+=======================================================
+
+.. currentmodule:: alfred3_reaction_times.hidden_input
+
+.. autoproperty:: HiddenInput.leftlab

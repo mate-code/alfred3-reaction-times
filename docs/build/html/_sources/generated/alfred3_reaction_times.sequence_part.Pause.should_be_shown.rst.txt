@@ -1,0 +1,6 @@
+Pause.should\_be\_shown
+==========================================================
+
+.. currentmodule:: alfred3_reaction_times.sequence_part
+
+.. autoproperty:: Pause.should_be_shown

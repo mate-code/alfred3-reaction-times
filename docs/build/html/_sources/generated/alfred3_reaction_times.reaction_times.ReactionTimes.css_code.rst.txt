@@ -1,0 +1,6 @@
+ReactionTimes.css\_code
+============================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.css_code

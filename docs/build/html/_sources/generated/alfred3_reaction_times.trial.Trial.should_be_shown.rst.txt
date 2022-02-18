@@ -1,0 +1,6 @@
+Trial.should\_be\_shown
+==================================================
+
+.. currentmodule:: alfred3_reaction_times.trial
+
+.. autoproperty:: Trial.should_be_shown

@@ -1,0 +1,6 @@
+ReactionTimes.section
+===========================================================
+
+.. currentmodule:: alfred3_reaction_times.reaction_times
+
+.. autoproperty:: ReactionTimes.section
