@@ -197,7 +197,7 @@ class Reaction(Element):
         else:
             raise KeyError("Unknown key " + key)
 
-        if kwargs["name"] == "--TIMEOUT--":
+        if "name" in kwargs and kwargs["name"] == "--TIMEOUT--":
             raise AlfredError("Forbidden name --TIMEOUT--")
 
     @property
