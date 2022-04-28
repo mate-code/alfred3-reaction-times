@@ -9,6 +9,7 @@ version = {}
 with open("src/alfred3_reaction_times/_version.py") as f:
     exec(f.read(), version)
 
+# Before you run: py -m pip install --upgrade pip
 setuptools.setup(
     name="alfred3_reaction_times",
     version=version["__version__"],
@@ -24,7 +25,7 @@ setuptools.setup(
             "templates/*",
         ]
     },
-    package_dir={"": "source"},
+    package_dir={"": "src"},
     install_requires=[
         "alfred3>=2.3.1",
         "jinja2>=2.11",
