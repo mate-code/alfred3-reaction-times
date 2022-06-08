@@ -12,7 +12,7 @@ $ pip install alfred3
 Afterwards, you can install alfred3_reaction_times:
 
 ```cmd
-$ pip install alfred3_reaction_times
+$ pip install alfred3-reaction-times
 ```
 
 ## A "Hello world" experiment
